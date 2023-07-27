@@ -36,15 +36,17 @@ form.addEventListener('submit', async (e) => {
   const firstName = document.querySelector('#first');
   const lastName = document.querySelector('#last');
   const email = document.querySelector('#email');
+  const condition = document.querySelector('#checkbox1');
 
   let contact = {
     firstName: firstName.value,
     lastName: lastName.value,
     email: email.value,
+    condition: condition.checked,
   }
 
   if (regexTest(contact)) {
-    console.log("c'est good");
+    form.style.display = 'none';
   }
 
 });
@@ -52,14 +54,23 @@ form.addEventListener('submit', async (e) => {
 
 // REGEX FORMULAIRE
 function regexTest(contact) {
+
+  form.querySelector('#firstNameErrorMsg').textContent = ''
+  form.querySelector('#lastNameErrorMsg').textContent = ''
+  form.querySelector('#emailErrorMsg').textContent = ''
+  form.querySelector('#conditionErrorMsg').textContent = ''
+
   if (!/^[A-Za-z]+[ \-']?[[A-Za-z]+[ \-']?]*[a-z]+$/.test(contact.firstName)) {
-    console.log("erreur dans le form FIRSTNAME");
+    form.querySelector('#firstNameErrorMsg').textContent = "Veuillez renseigner correctement votre Prénom"
     return false
   } else if (!/^[A-Za-z]+[ \-']?[[A-Za-z]+[ \-']?]*[a-z]+$/.test(contact.lastName)) {
-    console.log("erreur dans le form LASTNAME");
+    form.querySelector('#lastNameErrorMsg').textContent = "Veuillez renseigner correctement votre Nom"
     return false
   } else if (!/^[a-zA-Z0-9.-_+]+@[a-zA-Z0-9.-_]+\.[a-z]{2,10}$/.test(contact.email)) {
-    console.log("erreur dans le form EMAIL");
+    form.querySelector('#emailErrorMsg').textContent = "Veuillez renseigner correctement votre Email"
+    return false
+  } else if (!contact.condition) {
+    form.querySelector('#conditionErrorMsg').textContent = "Vérifier que vous acceptez les termes et conditions"
     return false
   } else {
     return true

@@ -57,20 +57,23 @@
       <div class="content">
         <span class="close"></span>
         <div class="modal-body">
-          <form name="reserve" method="get" class='form'> <!-- onsubmit="return validate();" action="index.html" -->
+          <form name="reserve" method="get" class='form'>
             <div class="formData">
               <label for="first">Prénom</label><br> <!-- ajout des for dans les labels -->
               <input class="text-control" type="text" id="first" name="first" minlength="2" required /><br>
+              <p id="firstNameErrorMsg" class="errorMsg"></p>
               <!-- ajout des required  -->
             </div>
             <div class="formData">
               <label for="last">Nom</label><br>
               <input class="text-control" type="text" id="last" name="last" minlength="2" required /><br>
+              <p id="lastNameErrorMsg" class="errorMsg"></p>
               <!-- ajout minlength="2"  -->
             </div>
             <div class="formData">
               <label for="email">E-mail</label><br>
               <input class="text-control" type="email" id="email" name="email" required /><br>
+              <p id="emailErrorMsg" class="errorMsg"></p>
               <!-- peut etre qu'on pourra enlever le required quand on aura mis la regex -->
             </div>
             <div class="formData">
@@ -111,13 +114,13 @@
             </div>
 
             <div class="formData">
-              <input class="checkbox-input" type="checkbox" id="checkbox1" checked required />
+              <input class="checkbox-input" type="checkbox" id="checkbox1" checked />
               <!-- modif erreur le required etait dans le label -->
               <label class="checkbox2-label" for="checkbox1">
                 <span class="checkbox-icon"></span>
                 J'ai lu et accepté les conditions d'utilisation.
               </label>
-              <br>
+              <p id="conditionErrorMsg" class="errorMsg"></p>
               <input class="checkbox-input" type="checkbox" id="checkbox2" />
               <label class="checkbox2-label" for="checkbox2">
                 <span class="checkbox-icon"></span>
