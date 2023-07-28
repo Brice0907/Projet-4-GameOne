@@ -261,6 +261,10 @@ input[data-error]::after {
   font-weight: normal;
 }
 
+.checkbox2-label-marge {
+  margin-bottom: 30px;
+}
+
 .checkbox-label .checkbox-icon,
 .checkbox2-label .checkbox-icon {
   display: block;
@@ -527,6 +531,29 @@ footer {
 .errorMsg {
   font-size: 15px;
   color: red;
+}
+
+.confirmation_bloc {
+  display: none;
+}
+
+.confirmation_bloc_text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 600px;
+  font-size: 28px;
+}
+
+.confirmation_bloc_btn {
+  text-align: center;
+  background: #fe142f;
+  border-radius: 7px;
+  width: 150px;
+  margin: auto;
+  padding: 12px 20px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1025px) {

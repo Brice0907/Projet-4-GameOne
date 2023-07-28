@@ -14,16 +14,20 @@ const formData = document.querySelectorAll(".formData");
 const closeForm = document.querySelector('.close');
 const submit = document.querySelector('.btn-submit');
 const form = document.querySelector('.form');
+const btnConfirmation = document.querySelector('.confirmation_bloc');
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+
 // close modal event
 closeForm.addEventListener('click', closing);
+btnConfirmation.addEventListener('click', closing);
 
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
 }
+
 // close modal event
 function closing() {
   modalbg.style.display = "none";
@@ -47,8 +51,8 @@ form.addEventListener('submit', async (e) => {
 
   if (regexTest(contact)) {
     form.style.display = 'none';
+    btnConfirmation.style.display = 'block';
   }
-
 });
 
 
