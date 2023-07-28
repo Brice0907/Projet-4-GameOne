@@ -70,17 +70,32 @@ function regexTest(contact) {
   form.querySelector('#emailErrorMsg').textContent = ''
   form.querySelector('#conditionErrorMsg').textContent = ''
 
-  // On filtre les données puis si elles sont incorrectes on affiche un message d'erreur
+  // On filtre les données puis si elles sont incorrectes on affiche un message d'erreur et met l'input en rouge
   if (!/^[A-Za-z]+[ \-']?[[A-Za-z]+[ \-']?]*[a-z]+$/.test(contact.firstName)) {
     form.querySelector('#firstNameErrorMsg').textContent = "Veuillez renseigner correctement votre Prénom"
+    document.querySelector('#first').classList.add('border-red');
     return false
-  } else if (!/^[A-Za-z]+[ \-']?[[A-Za-z]+[ \-']?]*[a-z]+$/.test(contact.lastName)) {
+  } else {
+    document.querySelector('#first').classList.remove('border-red');
+  }
+
+  if (!/^[A-Za-z]+[ \-']?[[A-Za-z]+[ \-']?]*[a-z]+$/.test(contact.lastName)) {
     form.querySelector('#lastNameErrorMsg').textContent = "Veuillez renseigner correctement votre Nom"
+    document.querySelector('#last').classList.add('border-red');
     return false
-  } else if (!/^[a-zA-Z0-9.-_+]+@[a-zA-Z0-9.-_]+\.[a-z]{2,10}$/.test(contact.email)) {
+  } else {
+    document.querySelector('#last').classList.remove('border-red');
+  }
+
+  if (!/^[a-zA-Z0-9.-_+]+@[a-zA-Z0-9.-_]+\.[a-z]{2,10}$/.test(contact.email)) {
     form.querySelector('#emailErrorMsg').textContent = "Veuillez renseigner correctement votre Email"
+    document.querySelector('#email').classList.add('border-red');
     return false
-  } else if (!contact.condition) {
+  } else {
+    document.querySelector('#email').classList.remove('border-red');
+  }
+
+  if (!contact.condition) {
     form.querySelector('#conditionErrorMsg').textContent = "Vérifier que vous acceptez les termes et conditions"
     return false
   } else {
