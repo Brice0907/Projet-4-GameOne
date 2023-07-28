@@ -19,7 +19,7 @@ const btnConfirmation = document.querySelector('.confirmation_bloc');
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// close modal event
+// Event au click
 closeForm.addEventListener('click', closing);
 btnConfirmation.addEventListener('click', closing);
 
@@ -28,20 +28,24 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-// close modal event
+// Function de fermeture du pop-up
 function closing() {
   modalbg.style.display = "none";
 }
 
-// Vérif form
+// Formulaire de vérification
 form.addEventListener('submit', async (e) => {
 
+  // On annule l'action de base du formulaire
   e.preventDefault();
+
+  // On récupère les champs du formulaire
   const firstName = document.querySelector('#first');
   const lastName = document.querySelector('#last');
   const email = document.querySelector('#email');
   const condition = document.querySelector('#checkbox1');
 
+  // On stock nos données dans un objet contact
   let contact = {
     firstName: firstName.value,
     lastName: lastName.value,
@@ -49,6 +53,7 @@ form.addEventListener('submit', async (e) => {
     condition: condition.checked,
   }
 
+  // Si on obtient True c'est que les données sont correcte
   if (regexTest(contact)) {
     form.style.display = 'none';
     btnConfirmation.style.display = 'block';
@@ -59,11 +64,13 @@ form.addEventListener('submit', async (e) => {
 // REGEX FORMULAIRE
 function regexTest(contact) {
 
+  // On récupère le champs pour les messages d'erreur
   form.querySelector('#firstNameErrorMsg').textContent = ''
   form.querySelector('#lastNameErrorMsg').textContent = ''
   form.querySelector('#emailErrorMsg').textContent = ''
   form.querySelector('#conditionErrorMsg').textContent = ''
 
+  // On filtre les données puis si elles sont incorrectes on affiche un message d'erreur
   if (!/^[A-Za-z]+[ \-']?[[A-Za-z]+[ \-']?]*[a-z]+$/.test(contact.firstName)) {
     form.querySelector('#firstNameErrorMsg').textContent = "Veuillez renseigner correctement votre Prénom"
     return false
