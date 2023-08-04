@@ -15,13 +15,15 @@ const closeForm = document.querySelector('.close');
 const submit = document.querySelector('.btn-submit');
 const form = document.querySelector('.form');
 const btnConfirmation = document.querySelector('.confirmation_bloc');
+const btnClose = document.querySelector('.confirmation_bloc_btn');
+
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // Event au click
 closeForm.addEventListener('click', closing);
-btnConfirmation.addEventListener('click', closing);
+btnClose.addEventListener('click', closing);
 
 // launch modal form
 function launchModal() {
@@ -63,18 +65,21 @@ form.addEventListener('submit', async (e) => {
 
 // REGEX FORMULAIRE
 function regexTest(contact) {
-
+  // faire un class verif pour que tout les messages viennent en meme temps
+  // rajouter un check des checksboxe
   // On récupère le champs pour les messages d'erreur
   form.querySelector('#firstNameErrorMsg').textContent = ''
   form.querySelector('#lastNameErrorMsg').textContent = ''
   form.querySelector('#emailErrorMsg').textContent = ''
   form.querySelector('#conditionErrorMsg').textContent = ''
 
+  let verif = true;
+
   // On filtre les données puis si elles sont incorrectes on affiche un message d'erreur et met l'input en rouge
   if (!/^[A-Za-z]+[ \-']?[[A-Za-z]+[ \-']?]*[a-z]+$/.test(contact.firstName)) {
     form.querySelector('#firstNameErrorMsg').textContent = "Veuillez renseigner correctement votre Prénom"
     document.querySelector('#first').classList.add('border-red');
-    return false
+    verif = false
   } else {
     document.querySelector('#first').classList.remove('border-red');
   }
@@ -82,7 +87,7 @@ function regexTest(contact) {
   if (!/^[A-Za-z]+[ \-']?[[A-Za-z]+[ \-']?]*[a-z]+$/.test(contact.lastName)) {
     form.querySelector('#lastNameErrorMsg').textContent = "Veuillez renseigner correctement votre Nom"
     document.querySelector('#last').classList.add('border-red');
-    return false
+    verif = false
   } else {
     document.querySelector('#last').classList.remove('border-red');
   }
@@ -90,15 +95,19 @@ function regexTest(contact) {
   if (!/^[a-zA-Z0-9.-_+]+@[a-zA-Z0-9.-_]+\.[a-z]{2,10}$/.test(contact.email)) {
     form.querySelector('#emailErrorMsg').textContent = "Veuillez renseigner correctement votre Email"
     document.querySelector('#email').classList.add('border-red');
-    return false
+    verif = false
   } else {
     document.querySelector('#email').classList.remove('border-red');
   }
 
   if (!contact.condition) {
     form.querySelector('#conditionErrorMsg').textContent = "Vérifier que vous acceptez les termes et conditions"
-    return false
+    verif = false
+  }
+
+  if (verif === false) {
+    return false;
   } else {
-    return true
+    return true;
   }
 }
