@@ -76,7 +76,7 @@ function regexTest(contact) {
   let verif = true;
 
   // On filtre les données puis si elles sont incorrectes on affiche un message d'erreur et met l'input en rouge
-  if (!/^[A-Za-z]+[ \-']?[[A-Za-z]+[ \-']?]*[a-z]+$/.test(contact.firstName)) {
+  if (!/^(?:[A-Z][a-z]*|[a-z][a-z]*)[ \-']?(?:[a-z]+[ \-']?)*[a-z]+$/.test(contact.firstName)) {
     form.querySelector('#firstNameErrorMsg').textContent = "Veuillez renseigner correctement votre Prénom"
     document.querySelector('#first').classList.add('border-red');
     verif = false
@@ -84,7 +84,7 @@ function regexTest(contact) {
     document.querySelector('#first').classList.remove('border-red');
   }
 
-  if (!/^[A-Za-z]+[ \-']?[[A-Za-z]+[ \-']?]*[a-z]+$/.test(contact.lastName)) {
+  if (!/^(?:[A-Z][a-z]*|[a-z][a-z]*)[ \-']?(?:[a-z]+[ \-']?)*[a-z]+$/.test(contact.lastName)) {
     form.querySelector('#lastNameErrorMsg').textContent = "Veuillez renseigner correctement votre Nom"
     document.querySelector('#last').classList.add('border-red');
     verif = false
